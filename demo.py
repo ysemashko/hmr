@@ -190,9 +190,9 @@ def main(img_path, json_path=None):
 
 def join_csv():
   path = 'hmr/output/csv/'                   
-  all_files = glob.glob(os.path.join(path, "*.csv")    )
-
-  df_from_each_file = (pd.read_csv(f) for f in sorted(all_files))
+  all_files = glob.glob(os.path.join(path, "*.csv"))
+  all_files.sort(key=lambda x: int(x.split('/')[-1].split('.')[0]))
+  df_from_each_file = (pd.read_csv(f) for f in all_files)
   concatenated_df   = pd.concat(df_from_each_file, ignore_index=True)
 
   concatenated_df['frame'] = concatenated_df.index+1
