@@ -104,7 +104,7 @@ def batch_global_rigid_transformation(Rs, Js, parent, rotate_base=False):
       new_J : `Tensor`: N x 24 x 3 location of absolute joints
       A     : `Tensor`: N x 24 4 x 4 relative joint transformations for LBS.
     """
-    with tf.name_scope("batch_forward_kinematics", [Rs, Js]):
+    with tf.name_scope("batch_forward_kinematics", values=[Rs, Js]):
         N = Rs.shape[0].value
         if rotate_base:
             print('Flipping the SMPL coordinate frame!!!!')
